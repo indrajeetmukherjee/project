@@ -1,0 +1,37 @@
+<div>
+<form #userForm="ngForm" (ngSubmit)="onSubmit()">
+  
+  {{ userForm.value | json}}
+  <hr />
+  {{ dealModel | json}}
+    <div>
+        <label>Deal Name</label>
+        <input type="text" [(ngModel)]="dealModel.dealName" name="name">
+    </div>
+    <div *ngFor = "let Fac of dealModel.facility;let i = index;">
+      <table>
+        <tr>
+          <td>
+    <div>
+      <label>Facility Name</label>
+      <input type="text" [(ngModel)]="Fac.facilityName" name="name_{{ Fac.facilityName }}">
+    </div>
+  </td>
+  <td>
+    <div>
+      <label>Facility Type</label>
+      <input type="text" [(ngModel)]="Fac.facilityType" name="name_{{ Fac.facilityName }}">
+    </div>
+  </td>
+  </tr>
+  </table>
+  <table><tr><th>Lender Name</th><th>Current Commitment Amount</th><th> Pro-Rata %</th></tr>
+    <tr *ngFor = "let lend of Fac.lender;let i = index;"><td><label>{{ lend.lenderName }}</label></td><td><label>{{ lend.commitAmt }}</label></td><td><label>{{ lend.proRata }}</label></td></tr>
+    <tr><td>Total</td><td><label>{{ totalCommitAmount }}</label></td><td></td></tr>
+  </table>
+  </div>
+    <button type="submit">Submit</button>
+</form>
+
+
+</div>
