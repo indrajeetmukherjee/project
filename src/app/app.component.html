@@ -8,7 +8,7 @@
         <label>Deal Name</label>
         <input type="text" [(ngModel)]="dealModel.dealName" name="name">
     </div>
-    <div *ngFor = "let Fac of dealModel.facility;let i = index;">
+    <div *ngFor = "let Fac of dealModel.facility;let facilityIndex = index">
       <table>
         <tr>
           <td>
@@ -20,16 +20,52 @@
   <td>
     <div>
       <label>Facility Type</label>
-      <input type="text" [(ngModel)]="Fac.facilityType" name="name_{{ Fac.facilityName }}">
+      <input type="text" [(ngModel)]="Fac.facilityType" name="name_{{ Fac.facilityType }}">
     </div>
   </td>
   </tr>
   </table>
   <table><tr><th>Lender Name</th><th>Current Commitment Amount</th><th> Pro-Rata %</th></tr>
-    <tr *ngFor = "let lend of Fac.lender;let i = index;"><td><label>{{ lend.lenderName }}</label></td><td><label>{{ lend.commitAmt }}</label></td><td><label>{{ lend.proRata }}</label></td></tr>
+    <tr *ngFor = "let lend of Fac.lender;let i = index"><td><label>{{ lend.lenderName }}</label></td><td><label>{{ lend.commitAmt }}</label></td><td><input type="text" [(ngModel)]="lend.proRata" name="name_{{ lend.proRata }}" (keyup)="calculate(i,facilityIndex)"></td>
+    </tr>
     <tr><td>Total</td><td><label>{{ totalCommitAmount }}</label></td><td></td></tr>
   </table>
+  <div *ngFor = "let ost of Fac.outstanding;let i = index;">
+    <table>
+      <tr>
+        <td>
+  <div>
+    <label>Outstanding Name</label>
+    <input type="text" [(ngModel)]="ost.ostName" name="name_{{ ost.ostName }}">
   </div>
+</td>
+<td>
+  <div>
+    <label>Outstanding Type</label>
+    <input type="text" [(ngModel)]="ost.ostType" name="name_{{ ost.ostType }}">
+  </div>
+</td>
+<td>
+  <div>
+    <label>Outstanding Amount</label>
+    <input type="text" [(ngModel)]="ost.ostAmount" name="name_{{ ost.ostAmount }}">
+  </div>
+</td>
+</tr>
+</table>
+<table><tr><th>Lender Name</th><th>Current Outstanding Amount</th><th> Outstanding %</th><th>New Outstanding Amount</th><th> New Outstanding %</th><th>Delta</th></tr>
+  <tr *ngFor = "let lend of ost.lender;let i = index;"><td><label>{{ lend.lenderName }}</label></td><td><label>{{ lend.commitAmt }}</label></td><td><input type="text" [(ngModel)]="lend.proRata" name="name_{{ lend.proRata }}"></td><td><label>{{ lend.newCommitAmt }}</label></td><td><input type="text" [(ngModel)]="lend.newProRata" name="name_{{ lend.newProRata }}"></td><td><label>{{ lend.delta }}</label></td>
+  </tr>
+  <tr><td>Total</td><td><label>{{ totalCommitAmount }}</label></td><td></td></tr>
+</table>
+    </div>
+    <hr>
+  </div>
+  <table><tr><th>Lender Name</th><th>Total Change Amount</th></tr>
+    <tr *ngFor = "let lend of dealModel.lender;let ind = index"><td><label>{{ lend.lenderName }}</label></td><td><label>{{ lend.totalchgAmt }}</label></td>
+    </tr>
+    <tr><td>Total</td><td><label>{{ totalCommitAmount }}</label></td><td></td></tr>
+  </table>
     <button type="submit">Submit</button>
 </form>
 
