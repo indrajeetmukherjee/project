@@ -30,6 +30,9 @@
     </tr>
     <tr><td>Total</td><td><label>{{ totalCommitAmount }}</label></td><td></td></tr>
   </table>
+  <div *ngIf="Fac.outstanding.length==0">
+    <button (click) = "onAction(facilityIndex)">Add</button >
+  </div>
   <div *ngFor = "let ost of Fac.outstanding;let i = index;">
     <table>
       <tr>
