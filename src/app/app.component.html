@@ -54,6 +54,18 @@
     <input type="text" [(ngModel)]="ost.ostAmount" name="name_{{ ost.ostAmount }}">
   </div>
 </td>
+<td>
+  <div>
+    <label>Outstanding Currency</label>
+    <input type="text" [(ngModel)]="ost.ostCur" name="name_{{ ost.ostCur }}">
+  </div>
+</td>
+<td>
+  <div>
+    <label>Fundable Type</label>
+    <input type="text" [(ngModel)]="ost.ostFund" name="name_{{ ost.ostFund }}">
+  </div>
+</td>
 </tr>
 </table>
 <table><tr><th>Lender Name</th><th>Current Outstanding Amount</th><th> Outstanding %</th><th>New Outstanding Amount</th><th> New Outstanding %</th><th>Delta</th></tr>

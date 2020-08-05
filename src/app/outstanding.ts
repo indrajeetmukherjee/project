@@ -6,6 +6,8 @@ export class Outstanding {
         public ostName:string,
         public ostType:string,
         public ostAmount:number,
+        public ostCur:string,
+        public ostFund:string,
         public lender:OstLender[]
     ) {}
 }
